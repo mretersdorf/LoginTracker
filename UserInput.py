@@ -1,29 +1,26 @@
-from UtilCSV import CSV_Util
+from CSVUtility import CSV_Util
 
 class UserInputs():
 
-    logins = CSV_Util()
+    login_data = CSV_Util()
+    choice = ""
     username = ""
     password = ""
 
     def __init__(self):
         a = 1
 
-    def prompt_user_inputs(self):
+    def initial_prompt(self):
+        print("If you would like to login using existing credentials, type '1'. \nIf you would like to create a new "
+              "user, type '2'.")
+        self.choice = input("1 or 2: ")
+        while self.choice != "1" and self.choice != "2":
+            self.choice = input("Unrecognized input, please type '1' to login or '2' to create a new user: ")
+        print("---"*15)
+        return self.choice
+
+    def prompt_existing_user(self):
         print("Please enter your credentials:")
         self.username = input("Username: ")
         self.password = input("Password: ")
 
-    def login_flow(self):
-        if self.logins.check_credentials(self.username, self.password):
-            print("!!!! ---- Username exists ---- !!!!")
-            if self.logins.password_match:
-                print("*" * 10 + "Login Successful. Welcome!" + "*" * 10)
-            else:
-                change_password = input("Password does not match. Would you like to change it? Y/N  - ")
-                if change_password.lower() == "y":
-                    print("Please Change your password:")
-                elif change_password.lower() == "n":
-                    print("You selected No. Goodbye!")
-                else:
-                    print("Input not recognized. Goodbye!")

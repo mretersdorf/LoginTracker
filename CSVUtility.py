@@ -31,5 +31,6 @@ class CSV_Util():
             self.password_match = False
 
     def add_new_user(self, username, password):
+        a = 2
 
 
