@@ -13,11 +13,10 @@ Prompt the user to create a new login or log in using existing credentials
 * If the login username matches, but the password does not match, then explain that the password does not match and give the user the initial prompt
 
 **Create new user:**  
-* Prompt user to enter username 
- > If user name exists, explain that username already exists and give the user the initial prompt
- 
- > If user name does not exist, prompt user to enter a password  
- 
-* Prompt user to enter a password
- > Login credentials are stored in LoginData.csv
+Prompt user to enter username 
+* If user name exists, explain that username already exists and give the user the initial prompt
+* If user name does not exist, prompt user to enter a password   
+
+Prompt user to enter a password
+* Login credentials are stored in LoginData.csv
  
