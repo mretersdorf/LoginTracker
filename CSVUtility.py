@@ -2,35 +2,56 @@ import csv
 
 class CSV_Util():
 
-    f = open("LoginData.csv")
-    logins = csv.DictReader(f)
+    login_data = {}
     username_match = False
     password_match = False
     user_row = 0
 
     def __init__(self):
-        a = "abc"
+        f = open("LoginData.csv")
+        csv_data = csv.DictReader(f)
+        for row in csv_data:
+            self.login_data[row['name']] = row['password']
+        f.close()
 
     def check_credentials(self, username, password):
-        row_num = 0
-        for row in self.logins:
-            print(row['name'], row['password'])
-            if username.lower() == row['name'].lower():
-                self.username_match = True
-                self.user_row = row_num
-                self.check_password(password, row['password'])
-                return True
+        if username in self.login_data:
+            self.username_match = True
+            if self.login_data[username] == password:
+                print("Password Matches! Login Successful!")
+                self.password_match = True
             else:
-                print("username does not match \n")
-            row_num = row_num + 1
-
-    def check_password(self, user_password, login_password):
-        if user_password == login_password:
-            self.password_match = True
+                print("Password does not match")
+                self.password_match = False
         else:
-            self.password_match = False
+            print("Username does not match")
+            self.username_match = False
+
+    def check_username(self, username):
+        if username in self.login_data:
+            return True
+        else:
+            return False
+
+    def check_password(self, username, password):
+        if self.login_data[username] == password:
+            return True
+        else:
+            return False
 
     def add_new_user(self, username, password):
-        a = 2
+        self.login_data[username] = password
+
+    def update_csv(self):
+        with open('LoginData.csv', 'w', newline='') as csvfile:
+            fieldnames = ['name', 'password']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            writer.writeheader()
+            for key in self.login_data:
+                writer.writerow({'name': key, 'password': self.login_data[key]})
+        csvfile.close()
+
+
 
 
