@@ -7,7 +7,6 @@ user = UserInputs()
 
 # Run logic -- possibly break out to new class
 user.initial_prompt()
-
 if user.choice == "1":
     # Login using existing credential
     login_success = False
