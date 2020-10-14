@@ -2,7 +2,7 @@
 
 ## Description
 Prompts a user to enter login information (username / password)  
-Login data is stored in a csv file LoginData.csv  
+Login data is stored in a file LoginData.csv  
 
 ### Workflow
 Prompt the user to create a new login or log in using existing credentials
